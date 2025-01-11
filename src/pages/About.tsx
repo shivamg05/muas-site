@@ -36,12 +36,12 @@ const About = () => {
               </ul>
             </div>
 
-            <h2 className="text-2xl font-semibold mb-6">Team Leadership</h2>
+            <h2 className="text-2xl font-semibold mb-6">Sub Teams</h2>
             
             <div className="space-y-8">
               {/* Software Team */}
               <div>
-                <h3 className="text-xl font-semibold mb-4">Software Team Leads</h3>
+                <h3 className="text-xl font-semibold mb-4">Software</h3>
                 <div className="grid md:grid-cols-3 gap-6">
                   {[1, 2, 3].map((i) => (
                     <div key={`software-${i}`} className="bg-gray-50 p-4 rounded-lg">
@@ -55,7 +55,7 @@ const About = () => {
 
               {/* Hardware Team */}
               <div>
-                <h3 className="text-xl font-semibold mb-4">Hardware Team Leads</h3>
+                <h3 className="text-xl font-semibold mb-4">Hardware</h3>
                 <div className="grid md:grid-cols-3 gap-6">
                   {[1, 2, 3].map((i) => (
                     <div key={`hardware-${i}`} className="bg-gray-50 p-4 rounded-lg">
@@ -69,7 +69,7 @@ const About = () => {
 
               {/* Airframe Team */}
               <div>
-                <h3 className="text-xl font-semibold mb-4">Airframe Team Leads</h3>
+                <h3 className="text-xl font-semibold mb-4">Airframe</h3>
                 <div className="grid md:grid-cols-3 gap-6">
                   {[1, 2, 3].map((i) => (
                     <div key={`airframe-${i}`} className="bg-gray-50 p-4 rounded-lg">
