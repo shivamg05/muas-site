@@ -51,6 +51,16 @@ const Navbar = () => {
             >
               News
             </Link>
+            <Link
+              to="/contact"
+              className={`${
+                isActive("/contact")
+                  ? "text-umdred font-semibold"
+                  : "text-gray-600 hover:text-umdred"
+              } transition-colors duration-200`}
+            >
+              Contact
+            </Link>
           </div>
         </div>
       </div>
