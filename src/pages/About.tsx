@@ -20,33 +20,65 @@ const About = () => {
               the boundaries of what's possible in autonomous flight.
             </p>
 
-            <h2 className="text-2xl font-semibold mb-4">Our Mission</h2>
-            <p className="text-lg text-gray-700 mb-8">
-              We strive to advance the field of autonomous aerial systems through innovative 
-              design, rigorous testing, and competitive excellence. Our team participates in 
-              various international competitions, providing members with hands-on experience 
-              in real-world engineering challenges.
-            </p>
+            <h2 className="text-2xl font-semibold mb-4">SUAS Competition</h2>
+            <div className="bg-gray-50 p-6 rounded-lg mb-8">
+              <p className="text-lg text-gray-700 mb-4">
+                The Student Unmanned Aerial Systems (SUAS) Competition challenges teams to design, 
+                integrate, report on, and demonstrate a UAS capable of autonomous flight and navigation, 
+                remote sensing, and payload delivery.
+              </p>
+              <h3 className="text-xl font-semibold mb-3">Main Objectives:</h3>
+              <ul className="list-disc list-inside text-gray-700 space-y-2">
+                <li>Flying Waypoint Laps - Autonomous navigation through predefined waypoints</li>
+                <li>Mapping of Course - Creating detailed aerial maps of the competition area</li>
+                <li>Object Detection & Classification - Identifying and categorizing ground objects</li>
+                <li>Payload Airdrop - Precise delivery of payloads to designated locations</li>
+              </ul>
+            </div>
 
-            <h2 className="text-2xl font-semibold mb-4">Team Structure</h2>
-            <div className="grid md:grid-cols-2 gap-8 mb-8">
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-xl font-semibold mb-3">Technical Teams</h3>
-                <ul className="list-disc list-inside text-gray-700">
-                  <li>Airframe Design</li>
-                  <li>Propulsion Systems</li>
-                  <li>Avionics</li>
-                  <li>Software Development</li>
-                </ul>
+            <h2 className="text-2xl font-semibold mb-6">Team Leadership</h2>
+            
+            <div className="space-y-8">
+              {/* Software Team */}
+              <div>
+                <h3 className="text-xl font-semibold mb-4">Software Team Leads</h3>
+                <div className="grid md:grid-cols-3 gap-6">
+                  {[1, 2, 3].map((i) => (
+                    <div key={`software-${i}`} className="bg-gray-50 p-4 rounded-lg">
+                      <div className="w-32 h-32 mx-auto bg-gray-200 rounded-full mb-4"></div>
+                      <p className="text-center text-gray-500">[Name]</p>
+                      <p className="text-center text-gray-400 text-sm">[Role]</p>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-xl font-semibold mb-3">Support Teams</h3>
-                <ul className="list-disc list-inside text-gray-700">
-                  <li>Project Management</li>
-                  <li>Business Development</li>
-                  <li>Marketing & Outreach</li>
-                  <li>Documentation</li>
-                </ul>
+
+              {/* Hardware Team */}
+              <div>
+                <h3 className="text-xl font-semibold mb-4">Hardware Team Leads</h3>
+                <div className="grid md:grid-cols-3 gap-6">
+                  {[1, 2, 3].map((i) => (
+                    <div key={`hardware-${i}`} className="bg-gray-50 p-4 rounded-lg">
+                      <div className="w-32 h-32 mx-auto bg-gray-200 rounded-full mb-4"></div>
+                      <p className="text-center text-gray-500">[Name]</p>
+                      <p className="text-center text-gray-400 text-sm">[Role]</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Airframe Team */}
+              <div>
+                <h3 className="text-xl font-semibold mb-4">Airframe Team Leads</h3>
+                <div className="grid md:grid-cols-3 gap-6">
+                  {[1, 2, 3].map((i) => (
+                    <div key={`airframe-${i}`} className="bg-gray-50 p-4 rounded-lg">
+                      <div className="w-32 h-32 mx-auto bg-gray-200 rounded-full mb-4"></div>
+                      <p className="text-center text-gray-500">[Name]</p>
+                      <p className="text-center text-gray-400 text-sm">[Role]</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

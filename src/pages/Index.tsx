@@ -16,10 +16,10 @@ const Index = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-white max-w-2xl"
+            className="text-white max-w-3xl"
           >
             <h1 className="text-5xl font-bold mb-4">
-              University of Maryland Unmanned Aerial Systems Team
+              University of Maryland's Unmanned Aerial Systems Team (MUAS)
             </h1>
             <p className="text-xl">
               Pushing the boundaries of autonomous flight technology

@@ -11,8 +11,13 @@ const Navbar = () => {
     <nav className="bg-white shadow-md">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
-          <Link to="/" className="flex items-center">
-            <span className="text-umdred font-bold text-xl">UMD UAS TEAM</span>
+          <Link to="/" className="flex items-center space-x-2">
+            <img 
+              src="/lovable-uploads/746ce7ed-050f-48cb-b1a2-6cce35460acc.png" 
+              alt="UMD MUAS Logo" 
+              className="h-10 w-10"
+            />
+            <span className="text-umdred font-bold text-xl">UMD MUAS</span>
           </Link>
           
           <div className="hidden md:flex space-x-8">
