@@ -2,19 +2,9 @@ import { motion } from "framer-motion";
 
 const newsItems = [
   {
-    date: "March 15, 2024",
-    title: "First Place in Navigation Challenge",
-    content: "Our team secured first place in the autonomous navigation challenge at the International Drone Competition.",
-  },
-  {
-    date: "February 28, 2024",
-    title: "New Drone Prototype Unveiled",
-    content: "The team successfully completed the first test flight of our latest autonomous drone prototype.",
-  },
-  {
-    date: "January 15, 2024",
-    title: "Spring Recruitment Drive",
-    content: "Join our growing team! We're looking for passionate students interested in autonomous systems and aerospace engineering.",
+    date: "January 10, 2025",
+    title: "Drone Prototyping in Progress!",
+    content: "The sub teams are working hard to complete our first VTOL prototype.",
   },
 ];
 

@@ -7,11 +7,11 @@ const Contact = () => {
       <h1 className="text-3xl font-bold mb-8">Contact Us</h1>
       
       <div className="bg-white rounded-lg shadow-md p-6 max-w-2xl mx-auto">
-        <p className="text-lg mb-6">Check us out on Instagram @umd_muas</p>
+        <p className="text-lg mb-6">Check us out on Instagram @umdmuas</p>
         
         <div className="flex gap-4 justify-center">
           <a
-            href="https://www.instagram.com/umd_muas"
+            href="https://www.instagram.com/umdmuas/"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-gray-600 hover:text-umdred transition-colors"
@@ -21,7 +21,7 @@ const Contact = () => {
           </a>
           
           <a
-            href="https://www.linkedin.com/company/umd-muas"
+            href="https://www.linkedin.com/company/maryland-uas/posts/?feedView=all"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-gray-600 hover:text-umdred transition-colors"
