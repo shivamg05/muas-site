@@ -44,6 +44,12 @@ const Navbar = () => {
                 About
               </button>
               <button
+                onClick={() => scrollToSection('support')}
+                className="text-gray-600 hover:text-umdred transition-colors py-2 md:py-0"
+              >
+                Sponsor
+              </button>
+              <button
                 onClick={() => scrollToSection('news')}
                 className="text-gray-600 hover:text-umdred transition-colors py-2 md:py-0"
               >
