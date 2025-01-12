@@ -1,9 +1,12 @@
 import { motion } from "framer-motion";
+import About from "./About";
+import News from "./News";
+import Contact from "./Contact";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-white">
-      <div className="relative h-[60vh] bg-gray-900">
+      <section id="home" className="relative h-[60vh] bg-gray-900">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -19,16 +22,16 @@ const Index = () => {
             className="text-white max-w-3xl"
           >
             <h1 className="text-5xl font-bold mb-4">
-              University of Maryland's Unmanned Aerial Systems Team (MUAS)
+              University of Maryland's Unmanned Aerial Systems (MUAS) Team
             </h1>
             <p className="text-xl">
               Pushing the boundaries of autonomous flight technology
             </p>
           </motion.div>
         </div>
-      </div>
+      </section>
 
-      <div className="container mx-auto px-4 py-16">
+      <section className="container mx-auto px-4 py-16">
         <div className="grid md:grid-cols-3 gap-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -62,11 +65,23 @@ const Index = () => {
           >
             <h3 className="text-xl font-semibold mb-4">Education</h3>
             <p className="text-gray-600">
-              Training the next generation of aerospace engineers and robotics specialists.
+              Training the next generation of aerospace engineers, computer scientists, and robotics specialists.
             </p>
           </motion.div>
         </div>
-      </div>
+      </section>
+
+      <section id="about" className="py-16 bg-gray-50">
+        <About />
+      </section>
+
+      <section id="news" className="py-16">
+        <News />
+      </section>
+
+      <section id="contact" className="py-16 bg-gray-50">
+        <Contact />
+      </section>
     </div>
   );
 };
