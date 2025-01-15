@@ -6,9 +6,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { motion } from "framer-motion";
 import { createClient } from '@supabase/supabase-js';
 
-// Initialize Supabase client with default values if environment variables are not set
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://your-project-url.supabase.co';
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'your-anon-key';
+// Initialize Supabase client with the provided credentials
+const supabaseUrl = 'https://vlegslbctapckfbvbraf.supabase.co';
+const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZsZWdzbGJjdGFwY2tmYnZicmFmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzY5MDEzNDQsImV4cCI6MjA1MjQ3NzM0NH0.tjSWy8cU_3dnf3JuQKhq93nJL6j8Lluk-W8sn3Rs6OM';
 
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
@@ -28,19 +28,32 @@ const SupportForm = () => {
     setIsLoading(true);
 
     try {
-      // Log the Supabase configuration for debugging
-      console.log('Supabase URL:', supabaseUrl);
-      console.log('Supabase Anon Key:', supabaseAnonKey);
+      // First, store the form data in Supabase
+      const { error: dbError } = await supabase
+        .from('contact_submissions')
+        .insert([
+          {
+            first_name: formData.firstName,
+            last_name: formData.lastName,
+            email: formData.email,
+            subject: formData.subject,
+            message: formData.message,
+            submitted_at: new Date().toISOString(),
+          }
+        ]);
 
-      const { data, error } = await supabase.functions.invoke('send-sponsor-email', {
+      if (dbError) throw dbError;
+
+      // Then, send the email
+      const { error: emailError } = await supabase.functions.invoke('send-sponsor-email', {
         body: formData
       });
 
-      if (error) throw error;
+      if (emailError) throw emailError;
 
       toast({
         title: "Success!",
-        description: "Your message has been sent to the MUAS team!",
+        description: "Your message has been sent and stored successfully!",
       });
 
       setFormData({
@@ -51,10 +64,10 @@ const SupportForm = () => {
         message: "",
       });
     } catch (error) {
-      console.error('Error sending email:', error);
+      console.error('Error processing form:', error);
       toast({
         title: "Error",
-        description: "Failed to send message. Please try again later.",
+        description: "Failed to process your message. Please try again later.",
         variant: "destructive",
       });
     } finally {
