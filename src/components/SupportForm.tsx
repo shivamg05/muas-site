@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { motion } from "framer-motion";
 import { createClient } from '@supabase/supabase-js';
 
-// Initialize Supabase client with the provided credentials
 const supabaseUrl = 'https://vlegslbctapckfbvbraf.supabase.co';
 const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZsZWdzbGJjdGFwY2tmYnZicmFmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzY5MDEzNDQsImV4cCI6MjA1MjQ3NzM0NH0.tjSWy8cU_3dnf3JuQKhq93nJL6j8Lluk-W8sn3Rs6OM';
 
@@ -26,9 +25,11 @@ const SupportForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    console.log("Starting form submission...");
 
     try {
       // First, store the form data in Supabase
+      console.log("Storing data in Supabase...");
       const { error: dbError } = await supabase
         .from('contact_submissions')
         .insert([
@@ -42,15 +43,23 @@ const SupportForm = () => {
           }
         ]);
 
-      if (dbError) throw dbError;
+      if (dbError) {
+        console.error("Database error:", dbError);
+        throw dbError;
+      }
 
+      console.log("Data stored successfully, sending email...");
       // Then, send the email
       const { error: emailError } = await supabase.functions.invoke('send-sponsor-email', {
         body: formData
       });
 
-      if (emailError) throw emailError;
+      if (emailError) {
+        console.error("Email error:", emailError);
+        throw emailError;
+      }
 
+      console.log("Form submission completed successfully");
       toast({
         title: "Success!",
         description: "Your message has been sent and stored successfully!",
