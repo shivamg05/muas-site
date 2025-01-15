@@ -24,8 +24,8 @@ serve(async (req) => {
     `
 
     await sendgrid.send({
-      to: "your-team@muas.com", // Replace with your team's email
-      from: "noreply@muas.com", // Replace with your verified sender
+      to: "umdmuas@gmail.com",
+      from: "umdmuas@gmail.com", // Note: This email must be verified in SendGrid
       subject: `New Sponsor Inquiry: ${subject}`,
       text: emailContent,
     });
