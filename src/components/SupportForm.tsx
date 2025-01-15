@@ -6,10 +6,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { motion } from "framer-motion";
 import { createClient } from '@supabase/supabase-js';
 
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_ANON_KEY
-);
+// Initialize Supabase client with default values if environment variables are not set
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://your-project-url.supabase.co';
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'your-anon-key';
+
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 const SupportForm = () => {
   const { toast } = useToast();
@@ -27,6 +28,10 @@ const SupportForm = () => {
     setIsLoading(true);
 
     try {
+      // Log the Supabase configuration for debugging
+      console.log('Supabase URL:', supabaseUrl);
+      console.log('Supabase Anon Key:', supabaseAnonKey);
+
       const { data, error } = await supabase.functions.invoke('send-sponsor-email', {
         body: formData
       });
