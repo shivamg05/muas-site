@@ -1,11 +1,8 @@
-// Import required dependencies
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 import { corsHeaders } from "../_shared/cors.ts"
-import { SendGrid } from "https://deno.land/x/sendgrid@0.0.3/mod.ts"
+import { Resend } from "npm:resend@2.0.0";
 
-// Initialize SendGrid with API key
-console.log("Initializing SendGrid...");
-const sendgrid = new SendGrid(Deno.env.get('SENDGRID_API_KEY')!);
+const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
 serve(async (req) => {
   // Handle CORS preflight requests
@@ -30,19 +27,27 @@ serve(async (req) => {
       
       Message:
       ${message}
-    `
+    `;
 
-    console.log("Attempting to send email via SendGrid...");
+    console.log("Attempting to send email via Resend...");
     
-    // Send email using SendGrid
-    const emailResponse = await sendgrid.send({
+    // Send email using Resend
+    const emailResponse = await resend.emails.send({
+      from: "MUAS <onboarding@resend.dev>", // Update this with your verified domain
       to: "umdmuas@gmail.com",
-      from: "umdmuas@gmail.com", // This email must be verified in SendGrid
       subject: `New Sponsor Inquiry: ${subject}`,
+      html: `
+        <h2>New Sponsor Inquiry</h2>
+        <p><strong>From:</strong> ${firstName} ${lastName}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Subject:</strong> ${subject}</p>
+        <h3>Message:</h3>
+        <p>${message}</p>
+      `,
       text: emailContent,
     });
 
-    console.log("SendGrid response:", emailResponse);
+    console.log("Resend response:", emailResponse);
 
     // Return success response
     return new Response(
