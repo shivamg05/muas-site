@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { motion } from "framer-motion";
 import { createClient } from '@supabase/supabase-js';
 
+// Supabase configuration
 const supabaseUrl = 'https://vlegslbctapckfbvbraf.supabase.co';
 const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZsZWdzbGJjdGFwY2tmYnZicmFmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzY5MDEzNDQsImV4cCI6MjA1MjQ3NzM0NH0.tjSWy8cU_3dnf3JuQKhq93nJL6j8Lluk-W8sn3Rs6OM';
 
@@ -14,6 +15,7 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey);
 const SupportForm = () => {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
+  // Form data state management
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -25,11 +27,12 @@ const SupportForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    console.log("Starting form submission...");
+    console.log("Starting form submission process...");
+    console.log("Form data:", formData);
 
     try {
-      // First, store the form data in Supabase
-      console.log("Storing data in Supabase...");
+      // Step 1: Store the form data in Supabase
+      console.log("Attempting to store data in Supabase...");
       const { error: dbError } = await supabase
         .from('contact_submissions')
         .insert([
@@ -48,23 +51,30 @@ const SupportForm = () => {
         throw dbError;
       }
 
-      console.log("Data stored successfully, sending email...");
-      // Then, send the email
-      const { error: emailError } = await supabase.functions.invoke('send-sponsor-email', {
+      console.log("Data stored successfully in Supabase");
+
+      // Step 2: Send email via Edge Function
+      console.log("Attempting to send email via Edge Function...");
+      const { data: emailData, error: emailError } = await supabase.functions.invoke('send-sponsor-email', {
         body: formData
       });
 
+      console.log("Edge function response:", emailData);
+
       if (emailError) {
-        console.error("Email error:", emailError);
+        console.error("Email sending error:", emailError);
         throw emailError;
       }
 
-      console.log("Form submission completed successfully");
+      console.log("Email sent successfully");
+      
+      // Success notification
       toast({
         title: "Success!",
         description: "Your message has been sent and stored successfully!",
       });
 
+      // Reset form
       setFormData({
         firstName: "",
         lastName: "",
@@ -73,7 +83,7 @@ const SupportForm = () => {
         message: "",
       });
     } catch (error) {
-      console.error('Error processing form:', error);
+      console.error('Error in form submission:', error);
       toast({
         title: "Error",
         description: "Failed to process your message. Please try again later.",
