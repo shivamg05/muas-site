@@ -5,12 +5,16 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { motion } from "framer-motion";
 import { createClient } from '@supabase/supabase-js';
+import emailjs from '@emailjs/browser';
 
 // Supabase configuration
 const supabaseUrl = 'https://vlegslbctapckfbvbraf.supabase.co';
 const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZsZWdzbGJjdGFwY2tmYnZicmFmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzY5MDEzNDQsImV4cCI6MjA1MjQ3NzM0NH0.tjSWy8cU_3dnf3JuQKhq93nJL6j8Lluk-W8sn3Rs6OM';
 
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+// Initialize EmailJS
+emailjs.init(process.env.EMAILJS_PUBLIC_KEY || '');
 
 const SupportForm = () => {
   const { toast } = useToast();
@@ -53,17 +57,24 @@ const SupportForm = () => {
 
       console.log("Data stored successfully in Supabase");
 
-      // Step 2: Send email via Edge Function
-      console.log("Attempting to send email via Edge Function...");
-      const { data: emailData, error: emailError } = await supabase.functions.invoke('send-sponsor-email', {
-        body: formData
-      });
+      // Step 2: Send email via EmailJS
+      console.log("Attempting to send email via EmailJS...");
+      const emailResponse = await emailjs.send(
+        process.env.EMAILJS_SERVICE_ID || '',
+        process.env.EMAILJS_TEMPLATE_ID || '',
+        {
+          from_name: `${formData.firstName} ${formData.lastName}`,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        process.env.EMAILJS_PUBLIC_KEY || ''
+      );
 
-      console.log("Edge function response:", emailData);
+      console.log("EmailJS response:", emailResponse);
 
-      if (emailError) {
-        console.error("Email sending error:", emailError);
-        throw emailError;
+      if (emailResponse.status !== 200) {
+        throw new Error('Failed to send email');
       }
 
       console.log("Email sent successfully");
