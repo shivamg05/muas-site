@@ -14,7 +14,7 @@ const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYm
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 // Initialize EmailJS
-emailjs.init(process.env.EMAILJS_PUBLIC_KEY || '');
+emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '');
 
 const SupportForm = () => {
   const { toast } = useToast();
@@ -60,15 +60,15 @@ const SupportForm = () => {
       // Step 2: Send email via EmailJS
       console.log("Attempting to send email via EmailJS...");
       const emailResponse = await emailjs.send(
-        process.env.EMAILJS_SERVICE_ID || '',
-        process.env.EMAILJS_TEMPLATE_ID || '',
+        import.meta.env.VITE_EMAILJS_SERVICE_ID || '',
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID || '',
         {
           from_name: `${formData.firstName} ${formData.lastName}`,
           from_email: formData.email,
           subject: formData.subject,
           message: formData.message,
         },
-        process.env.EMAILJS_PUBLIC_KEY || ''
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY || ''
       );
 
       console.log("EmailJS response:", emailResponse);
