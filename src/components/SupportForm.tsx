@@ -58,43 +58,54 @@ const SupportForm = () => {
         templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
       });
 
+      // Log the exact template parameters being sent
       const templateParams = {
         to_name: "MUAS Team",
         from_name: `${formData.firstName} ${formData.lastName}`,
         from_email: formData.email,
         subject: formData.subject,
         message: formData.message,
-        reply_to: formData.email,
       };
+      
+      console.log("Template parameters being sent:", templateParams);
 
-      const emailResponse = await emailjs.send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        templateParams,
-        EMAILJS_PUBLIC_KEY // Add public key here explicitly
-      );
+      try {
+        const emailResponse = await emailjs.send(
+          import.meta.env.VITE_EMAILJS_SERVICE_ID,
+          import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+          templateParams,
+          EMAILJS_PUBLIC_KEY
+        );
 
-      console.log("EmailJS Response:", emailResponse);
+        console.log("EmailJS Response:", emailResponse);
+        
+        if (!emailResponse.status || emailResponse.status !== 200) {
+          throw new Error(`Email sending failed with status: ${emailResponse.status}`);
+        }
 
-      // Success notification
-      toast({
-        title: "Success!",
-        description: "Your message has been sent and stored successfully!",
-      });
+        // Success notification
+        toast({
+          title: "Success!",
+          description: "Your message has been sent and stored successfully!",
+        });
 
-      // Reset form
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        subject: "",
-        message: "",
-      });
-    } catch (error) {
+        // Reset form
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+      } catch (emailError: any) {
+        console.error("EmailJS error details:", emailError);
+        throw new Error(`Failed to send email: ${emailError.message}`);
+      }
+    } catch (error: any) {
       console.error('Error in form submission:', error);
       toast({
         title: "Error",
-        description: "Failed to process your message. Please try again later.",
+        description: error.message || "Failed to process your message. Please try again later.",
         variant: "destructive",
       });
     } finally {
