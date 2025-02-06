@@ -59,6 +59,12 @@ const SupportForm = () => {
 
       // Step 2: Send email via EmailJS
       console.log("Attempting to send email via EmailJS...");
+      console.log("EmailJS Configuration:", {
+        serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY ? "Present" : "Missing",
+      });
+
       const emailResponse = await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID || '',
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID || '',
@@ -67,8 +73,7 @@ const SupportForm = () => {
           from_email: formData.email,
           subject: formData.subject,
           message: formData.message,
-        },
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY || ''
+        }
       );
 
       console.log("EmailJS response:", emailResponse);
