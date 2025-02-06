@@ -4,22 +4,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { motion } from "framer-motion";
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from "@/integrations/supabase/client";
 import emailjs from '@emailjs/browser';
 
-// Supabase configuration
-const supabaseUrl = 'https://vlegslbctapckfbvbraf.supabase.co';
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZsZWdzbGJjdGFwY2tmYnZicmFmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzY5MDEzNDQsImV4cCI6MjA1MjQ3NzM0NH0.tjSWy8cU_3dnf3JuQKhq93nJL6j8Lluk-W8sn3Rs6OM';
-
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
-
-// Initialize EmailJS
-emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '');
+// Initialize EmailJS with the public key from Supabase secrets
+emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
 
 const SupportForm = () => {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
-  // Form data state management
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -46,44 +39,39 @@ const SupportForm = () => {
             email: formData.email,
             subject: formData.subject,
             message: formData.message,
-            submitted_at: new Date().toISOString(),
           }
         ]);
 
       if (dbError) {
         console.error("Database error:", dbError);
-        throw dbError;
+        throw new Error(`Database error: ${dbError.message}`);
       }
 
       console.log("Data stored successfully in Supabase");
 
       // Step 2: Send email via EmailJS
       console.log("Attempting to send email via EmailJS...");
+      const templateParams = {
+        from_name: `${formData.firstName} ${formData.lastName}`,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+      };
+
       console.log("EmailJS Configuration:", {
         serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID,
         templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY ? "Present" : "Missing",
+        templateParams,
       });
 
       const emailResponse = await emailjs.send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID || '',
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID || '',
-        {
-          from_name: `${formData.firstName} ${formData.lastName}`,
-          from_email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-        }
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        templateParams
       );
 
       console.log("EmailJS response:", emailResponse);
 
-      if (emailResponse.status !== 200) {
-        throw new Error('Failed to send email');
-      }
-
-      console.log("Email sent successfully");
-      
       // Success notification
       toast({
         title: "Success!",
@@ -193,6 +181,7 @@ const SupportForm = () => {
       </div>
     </section>
   );
+
 };
 
 export default SupportForm;
