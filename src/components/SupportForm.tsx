@@ -7,8 +7,9 @@ import { motion } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
 import emailjs from '@emailjs/browser';
 
-// Initialize EmailJS with the public key from Supabase secrets
-emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
+// Initialize EmailJS with the public key
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+emailjs.init(EMAILJS_PUBLIC_KEY);
 
 const SupportForm = () => {
   const { toast } = useToast();
@@ -51,26 +52,29 @@ const SupportForm = () => {
 
       // Step 2: Send email via EmailJS
       console.log("Attempting to send email via EmailJS...");
+      console.log("EmailJS Configuration:", {
+        publicKey: EMAILJS_PUBLIC_KEY ? "Present" : "Missing",
+        serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+      });
+
       const templateParams = {
+        to_name: "MUAS Team",
         from_name: `${formData.firstName} ${formData.lastName}`,
         from_email: formData.email,
         subject: formData.subject,
         message: formData.message,
+        reply_to: formData.email,
       };
-
-      console.log("EmailJS Configuration:", {
-        serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        templateParams,
-      });
 
       const emailResponse = await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        templateParams
+        templateParams,
+        EMAILJS_PUBLIC_KEY // Add public key here explicitly
       );
 
-      console.log("EmailJS response:", emailResponse);
+      console.log("EmailJS Response:", emailResponse);
 
       // Success notification
       toast({
