@@ -99,9 +99,9 @@ export const useSupportForm = (emailjsConfig: EmailJSConfig) => {
           throw new Error(`Email sending failed with status: ${emailResponse.status}`);
         }
 
-        // Success notification
+        // Success notification with updated message
         toast({
-          title: "Success!",
+          title: "Request Sent!",
           description: "Your message has been sent and stored successfully!",
         });
 
