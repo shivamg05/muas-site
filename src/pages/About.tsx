@@ -45,13 +45,24 @@ const About = () => {
               <div>
                 <h3 className="text-xl font-semibold mb-4">Software</h3>
                 <div className="grid md:grid-cols-3 gap-6">
-                  {[1, 2, 3].map((i) => (
+                  {[1, 2].map((i) => (
                     <div key={`software-${i}`} className="bg-gray-50 p-4 rounded-lg">
                       <div className="w-32 h-32 mx-auto bg-gray-200 rounded-full mb-4"></div>
                       <p className="text-center text-gray-500">[Name]</p>
                       <p className="text-center text-gray-400 text-sm">[Role]</p>
                     </div>
                   ))}
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <div className="w-32 h-32 mx-auto overflow-hidden rounded-full mb-4">
+                      <img 
+                        src="/lovable-uploads/2bab805d-f2a1-485d-b597-20fbdbdffc36.png"
+                        alt="Shivam Garg"
+                        className="w-full h-full object-cover object-top"
+                      />
+                    </div>
+                    <p className="text-center text-gray-500">Shivam Garg</p>
+                    <p className="text-center text-gray-400 text-sm">ODCL Sublead + Web Developer</p>
+                  </div>
                 </div>
               </div>
 

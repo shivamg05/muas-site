@@ -1,9 +1,11 @@
+
 import About from "./About";
 import News from "./News";
 import Contact from "./Contact";
 import HeroSection from "@/components/HeroSection";
 import FeatureSection from "@/components/FeatureSection";
 import SupportForm from "@/components/SupportForm";
+import Sponsors from "@/components/Sponsors";
 
 const Index = () => {
   return (
@@ -12,6 +14,9 @@ const Index = () => {
       <FeatureSection />
       <section id="about" className="py-16 bg-gray-50">
         <About />
+      </section>
+      <section className="py-12 bg-white">
+        <Sponsors />
       </section>
       <SupportForm />
       <section id="news" className="py-16 bg-gray-50">
