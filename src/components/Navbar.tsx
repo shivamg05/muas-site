@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { Menu } from "lucide-react";
 import { useState } from "react";
@@ -44,7 +45,7 @@ const Navbar = () => {
                 About
               </button>
               <button
-                onClick={() => scrollToSection('support')}
+                onClick={() => scrollToSection('sponsors')}
                 className="text-gray-600 hover:text-umdred transition-colors py-2 md:py-0"
               >
                 Sponsor
@@ -70,3 +71,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

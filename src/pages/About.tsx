@@ -19,7 +19,7 @@ const About = () => {
               dedicated to the development of autonomous aircraft systems. Our team consists of 
               passionate students from various engineering disciplines working together to push 
               the boundaries of what's possible in autonomous flight. While our operations were shut down during the pandemic, 
-              we are excited to be competing in the 2025 SUAS competition.
+              we are excited to be competing in the <a href="https://suas-competition.org" target="_blank" rel="noopener noreferrer" className="text-umdred hover:text-red-700">2025 SUAS competition</a>.
             </p>
 
             <h2 className="text-2xl font-semibold mb-4">SUAS Competition</h2>
@@ -102,3 +102,4 @@ const About = () => {
 };
 
 export default About;
+

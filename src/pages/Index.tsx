@@ -15,11 +15,11 @@ const Index = () => {
       <section id="about" className="py-16 bg-gray-50">
         <About />
       </section>
-      <section className="py-12 bg-white">
+      <section id="sponsors" className="py-12 bg-white">
         <Sponsors />
       </section>
       <SupportForm />
-      <section id="news" className="py-16 bg-gray-50">
+      <section id="news" className="py-8 bg-gray-50">
         <News />
       </section>
       <section id="contact" className="py-16">
@@ -30,3 +30,4 @@ const Index = () => {
 };
 
 export default Index;
+
