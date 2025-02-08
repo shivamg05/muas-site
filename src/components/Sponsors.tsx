@@ -10,7 +10,7 @@ const Sponsors = () => {
         transition={{ duration: 0.8 }}
         className="max-w-4xl mx-auto"
       >
-        <h2 className="text-4xl font-bold mb-12 text-center">Meet Our 2024-2025 Sponsors</h2>
+        <h2 id="sponsors-title" className="text-4xl font-bold mb-12 text-center">Meet Our 2024-2025 Sponsors</h2>
         <div className="h-32">
           {/* Space reserved for sponsor logos */}
         </div>
@@ -20,3 +20,4 @@ const Sponsors = () => {
 };
 
 export default Sponsors;
+

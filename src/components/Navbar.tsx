@@ -9,7 +9,14 @@ const Navbar = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const offset = 100; // Adjust this value to control how far from the top the section should be
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
       setIsMenuOpen(false);
     }
   };
@@ -45,7 +52,7 @@ const Navbar = () => {
                 About
               </button>
               <button
-                onClick={() => scrollToSection('sponsors')}
+                onClick={() => scrollToSection('sponsors-title')}
                 className="text-gray-600 hover:text-umdred transition-colors py-2 md:py-0"
               >
                 Sponsor

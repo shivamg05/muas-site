@@ -1,3 +1,4 @@
+
 import { motion } from "framer-motion";
 
 const newsItems = [
@@ -10,7 +11,7 @@ const newsItems = [
 
 const News = () => {
   return (
-    <div className="min-h-screen bg-white py-16">
+    <div className="bg-white">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
