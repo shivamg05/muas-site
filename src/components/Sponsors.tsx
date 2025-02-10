@@ -14,7 +14,7 @@ const Sponsors = () => {
         
         <div className="relative">
           <div className="overflow-x-auto pb-4 scrollbar-hide">
-            <div className="flex space-x-8 px-4 md:justify-center min-w-max">
+            <div className="flex space-x-8 md:space-x-16 px-4 justify-center">
               <div className="relative">
                 <a 
                   href="https://www.solidworks.com" 
@@ -25,7 +25,7 @@ const Sponsors = () => {
                   <img 
                     src="/lovable-uploads/b47c78db-1cfa-437e-915f-32e68aaff55e.png"
                     alt="Solidworks"
-                    className="h-32 w-auto object-contain"
+                    className="h-24 w-auto object-contain"
                   />
                 </a>
               </div>
@@ -40,7 +40,7 @@ const Sponsors = () => {
                   <img 
                     src="/lovable-uploads/6b3c559b-b264-42cb-9704-dfc841ead825.png"
                     alt="Leidos"
-                    className="h-32 w-auto object-contain"
+                    className="h-24 w-auto object-contain"
                   />
                 </a>
               </div>
@@ -55,7 +55,7 @@ const Sponsors = () => {
                   <img 
                     src="/lovable-uploads/46ab79f9-004b-4145-8cb5-e70719337560.png"
                     alt="UMD Engineering"
-                    className="h-32 w-auto object-contain"
+                    className="h-24 w-auto object-contain"
                   />
                 </a>
               </div>
