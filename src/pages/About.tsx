@@ -38,6 +38,19 @@ const About = () => {
               </ul>
             </div>
 
+            <h2 className="text-2xl font-semibold mb-6">Executive Board</h2>
+            <div className="space-y-8 mb-12">
+              <div className="grid md:grid-cols-3 gap-6">
+                {[1, 2, 3].map((i) => (
+                  <div key={`exec-${i}`} className="bg-gray-50 p-4 rounded-lg">
+                    <div className="w-32 h-32 mx-auto bg-gray-200 rounded-full mb-4"></div>
+                    <p className="text-center text-gray-500">[Name]</p>
+                    <p className="text-center text-gray-400 text-sm">[Role]</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             <h2 className="text-2xl font-semibold mb-6">Sub Teams</h2>
             
             <div className="space-y-8">
