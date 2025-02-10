@@ -23,7 +23,7 @@ const Sponsors = () => {
                   className="block"
                 >
                   <img 
-                    src="/lovable-uploads/b47c78db-1cfa-437e-915f-32e68aaff55e.png"
+                    src="/lovable-uploads/54b23ff5-19ee-4c75-bed9-d9abddaf162c.png"
                     alt="Solidworks"
                     className="h-24 w-auto object-contain"
                   />
