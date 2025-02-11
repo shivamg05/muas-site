@@ -1,5 +1,5 @@
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useIsMobile } from "../hooks/use-mobile";
 
@@ -21,34 +21,28 @@ const About = () => {
           hardware: (prev.hardware + 1) % 3,
           airframe: (prev.airframe + 1) % 3
         }));
-      }, 3000); // Change profile every 3 seconds
+      }, 3000);
 
       return () => clearInterval(interval);
     }
   }, [isMobile]);
 
-  const renderProfiles = (profiles: any[], currentIndex: number, showAll: boolean) => {
-    if (showAll) {
-      return profiles.map((profile, i) => (
-        <div key={i} className="bg-gray-50 p-4 rounded-lg">
+  const renderProfile = (profile: JSX.Element, isVisible: boolean) => (
+    <AnimatePresence mode="wait">
+      {isVisible && (
+        <motion.div
+          key={Math.random()} // Force re-render on profile change
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -20 }}
+          transition={{ duration: 0.5 }}
+          className="bg-gray-50 p-4 rounded-lg"
+        >
           {profile}
-        </div>
-      ));
-    }
-    
-    return (
-      <motion.div 
-        key={currentIndex}
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: -20 }}
-        transition={{ duration: 0.5 }}
-        className="bg-gray-50 p-4 rounded-lg"
-      >
-        {profiles[currentIndex]}
-      </motion.div>
-    );
-  };
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
 
   const execProfiles = Array(3).fill(
     <div>
@@ -156,7 +150,15 @@ const About = () => {
             <h2 className="text-2xl font-semibold mb-6">Executive Board</h2>
             <div className="space-y-8 mb-12">
               <div className={`grid ${isMobile ? 'grid-cols-1' : 'md:grid-cols-3'} gap-6`}>
-                {renderProfiles(execProfiles, currentProfile.exec, !isMobile)}
+                {isMobile ? (
+                  renderProfile(execProfiles[currentProfile.exec], true)
+                ) : (
+                  execProfiles.map((profile, i) => (
+                    <div key={i} className="bg-gray-50 p-4 rounded-lg">
+                      {profile}
+                    </div>
+                  ))
+                )}
               </div>
             </div>
 
@@ -167,7 +169,15 @@ const About = () => {
               <div>
                 <h3 className="text-xl font-semibold mb-4">Software</h3>
                 <div className={`grid ${isMobile ? 'grid-cols-1' : 'md:grid-cols-3'} gap-6`}>
-                  {renderProfiles(softwareProfiles, currentProfile.software, !isMobile)}
+                  {isMobile ? (
+                    renderProfile(softwareProfiles[currentProfile.software], true)
+                  ) : (
+                    softwareProfiles.map((profile, i) => (
+                      <div key={i} className="bg-gray-50 p-4 rounded-lg">
+                        {profile}
+                      </div>
+                    ))
+                  )}
                 </div>
               </div>
 
@@ -175,7 +185,15 @@ const About = () => {
               <div>
                 <h3 className="text-xl font-semibold mb-4">Hardware</h3>
                 <div className={`grid ${isMobile ? 'grid-cols-1' : 'md:grid-cols-3'} gap-6`}>
-                  {renderProfiles(hardwareProfiles, currentProfile.hardware, !isMobile)}
+                  {isMobile ? (
+                    renderProfile(hardwareProfiles[currentProfile.hardware], true)
+                  ) : (
+                    hardwareProfiles.map((profile, i) => (
+                      <div key={i} className="bg-gray-50 p-4 rounded-lg">
+                        {profile}
+                      </div>
+                    ))
+                  )}
                 </div>
               </div>
 
@@ -183,7 +201,15 @@ const About = () => {
               <div>
                 <h3 className="text-xl font-semibold mb-4">Airframe</h3>
                 <div className={`grid ${isMobile ? 'grid-cols-1' : 'md:grid-cols-3'} gap-6`}>
-                  {renderProfiles(airframeProfiles, currentProfile.airframe, !isMobile)}
+                  {isMobile ? (
+                    renderProfile(airframeProfiles[currentProfile.airframe], true)
+                  ) : (
+                    airframeProfiles.map((profile, i) => (
+                      <div key={i} className="bg-gray-50 p-4 rounded-lg">
+                        {profile}
+                      </div>
+                    ))
+                  )}
                 </div>
               </div>
             </div>
