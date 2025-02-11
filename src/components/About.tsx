@@ -1,4 +1,3 @@
-
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useIsMobile } from "../hooks/use-mobile";
@@ -31,7 +30,7 @@ const About = () => {
     <AnimatePresence mode="wait">
       {isVisible && (
         <motion.div
-          key={Math.random()} // Force re-render on profile change
+          key={Math.random()}
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -20 }}
@@ -44,13 +43,29 @@ const About = () => {
     </AnimatePresence>
   );
 
-  const execProfiles = Array(3).fill(
+  const execProfiles = [
+    <div>
+      <div className="w-32 h-32 mx-auto overflow-hidden rounded-full mb-4">
+        <img 
+          src="/lovable-uploads/fe8b31db-f6af-4c03-8ed2-7d972a12985e.png"
+          alt="Matthew Chmielewski"
+          className="w-full h-full object-cover"
+        />
+      </div>
+      <p className="text-center text-gray-500">Matthew Chmielewski</p>
+      <p className="text-center text-gray-400 text-sm">President</p>
+    </div>,
+    <div>
+      <div className="w-32 h-32 mx-auto bg-gray-200 rounded-full mb-4"></div>
+      <p className="text-center text-gray-500">[Name]</p>
+      <p className="text-center text-gray-400 text-sm">[Role]</p>
+    </div>,
     <div>
       <div className="w-32 h-32 mx-auto bg-gray-200 rounded-full mb-4"></div>
       <p className="text-center text-gray-500">[Name]</p>
       <p className="text-center text-gray-400 text-sm">[Role]</p>
     </div>
-  );
+  ];
 
   const softwareProfiles = [
     <div>

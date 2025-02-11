@@ -23,7 +23,7 @@ const Sponsors = () => {
               <img 
                 src="/lovable-uploads/d6e52c95-2b37-470a-ba7e-77496fec355f.png"
                 alt="Solidworks"
-                className="h-12 w-auto object-contain"
+                className="h-12 md:h-12 w-auto object-contain"
               />
             </a>
             
@@ -36,7 +36,7 @@ const Sponsors = () => {
               <img 
                 src="/lovable-uploads/6b3c559b-b264-42cb-9704-dfc841ead825.png"
                 alt="Leidos"
-                className="h-12 w-auto object-contain"
+                className="h-12 md:h-12 w-auto object-contain"
               />
             </a>
             
@@ -49,7 +49,7 @@ const Sponsors = () => {
               <img 
                 src="/lovable-uploads/46ab79f9-004b-4145-8cb5-e70719337560.png"
                 alt="UMD Engineering"
-                className="h-12 w-auto object-contain"
+                className="h-12 md:h-12 w-auto object-contain"
               />
             </a>
           </div>
