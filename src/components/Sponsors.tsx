@@ -21,7 +21,7 @@ const Sponsors = () => {
               className="flex items-center justify-center w-1/3"
             >
               <img 
-                src="/lovable-uploads/754ba45c-00bc-4664-9f0f-3ff785f43a65.png"
+                src="/lovable-uploads/d6e52c95-2b37-470a-ba7e-77496fec355f.png"
                 alt="Solidworks"
                 className="h-16 w-auto object-contain"
               />
