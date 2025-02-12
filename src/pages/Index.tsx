@@ -1,5 +1,5 @@
 
-import About from "./About";
+import About from "../components/About";
 import News from "./News";
 import Contact from "./Contact";
 import HeroSection from "@/components/HeroSection";
@@ -30,4 +30,3 @@ const Index = () => {
 };
 
 export default Index;
-
