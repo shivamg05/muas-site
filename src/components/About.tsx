@@ -1,48 +1,7 @@
-import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
-import { useIsMobile } from "../hooks/use-mobile";
+
+import { motion } from "framer-motion";
 
 const About = () => {
-  const isMobile = useIsMobile();
-  const [currentProfile, setCurrentProfile] = useState({
-    exec: 0,
-    software: 0,
-    hardware: 0,
-    airframe: 0
-  });
-
-  useEffect(() => {
-    if (isMobile) {
-      const interval = setInterval(() => {
-        setCurrentProfile(prev => ({
-          exec: (prev.exec + 1) % 3,
-          software: (prev.software + 1) % 3,
-          hardware: (prev.hardware + 1) % 3,
-          airframe: (prev.airframe + 1) % 3
-        }));
-      }, 3000);
-
-      return () => clearInterval(interval);
-    }
-  }, [isMobile]);
-
-  const renderProfile = (profile: JSX.Element, isVisible: boolean) => (
-    <AnimatePresence mode="wait">
-      {isVisible && (
-        <motion.div
-          key={Math.random()}
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -20 }}
-          transition={{ duration: 0.5 }}
-          className="bg-gray-50 p-4 rounded-lg"
-        >
-          {profile}
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-
   const execProfiles = [
     <div>
       <div className="w-32 h-32 mx-auto overflow-hidden rounded-full mb-4">
@@ -67,7 +26,18 @@ const About = () => {
     </div>
   ];
 
-  const softwareProfiles = [
+  const subTeamLeads = [
+    <div>
+      <div className="w-32 h-32 mx-auto overflow-hidden rounded-full mb-4">
+        <img 
+          src="/lovable-uploads/4806045c-a291-4782-a0da-06addc10b471.png"
+          alt="Ishmael Agui"
+          className="w-full h-full object-cover object-top"
+        />
+      </div>
+      <p className="text-center text-gray-500">Ishmael Agui</p>
+      <p className="text-center text-gray-400 text-sm">Hardware Lead</p>
+    </div>,
     <div>
       <div className="w-32 h-32 mx-auto overflow-hidden rounded-full mb-4">
         <img 
@@ -89,42 +59,8 @@ const About = () => {
       </div>
       <p className="text-center text-gray-500">Shivam Garg</p>
       <p className="text-center text-gray-400 text-sm">ODCL Sublead + Web Developer</p>
-    </div>,
-    <div>
-      <div className="w-32 h-32 mx-auto bg-gray-200 rounded-full mb-4"></div>
-      <p className="text-center text-gray-500">[Name]</p>
-      <p className="text-center text-gray-400 text-sm">[Role]</p>
     </div>
   ];
-
-  const hardwareProfiles = [
-    <div>
-      <div className="w-32 h-32 mx-auto overflow-hidden rounded-full mb-4">
-        <img 
-          src="/lovable-uploads/4806045c-a291-4782-a0da-06addc10b471.png"
-          alt="Ishmael Agui"
-          className="w-full h-full object-cover object-top"
-        />
-      </div>
-      <p className="text-center text-gray-500">Ishmael Agui</p>
-      <p className="text-center text-gray-400 text-sm">Hardware Lead</p>
-    </div>,
-    ...Array(2).fill(
-      <div>
-        <div className="w-32 h-32 mx-auto bg-gray-200 rounded-full mb-4"></div>
-        <p className="text-center text-gray-500">[Name]</p>
-        <p className="text-center text-gray-400 text-sm">[Role]</p>
-      </div>
-    )
-  ];
-
-  const airframeProfiles = Array(3).fill(
-    <div>
-      <div className="w-32 h-32 mx-auto bg-gray-200 rounded-full mb-4"></div>
-      <p className="text-center text-gray-500">[Name]</p>
-      <p className="text-center text-gray-400 text-sm">[Role]</p>
-    </div>
-  );
 
   return (
     <div className="min-h-screen bg-white py-16">
@@ -164,68 +100,23 @@ const About = () => {
 
             <h2 className="text-2xl font-semibold mb-6">Executive Board</h2>
             <div className="space-y-8 mb-12">
-              <div className={`grid ${isMobile ? 'grid-cols-1' : 'md:grid-cols-3'} gap-6`}>
-                {isMobile ? (
-                  renderProfile(execProfiles[currentProfile.exec], true)
-                ) : (
-                  execProfiles.map((profile, i) => (
-                    <div key={i} className="bg-gray-50 p-4 rounded-lg">
-                      {profile}
-                    </div>
-                  ))
-                )}
+              <div className="grid md:grid-cols-3 gap-6">
+                {execProfiles.map((profile, i) => (
+                  <div key={i} className="bg-gray-50 p-4 rounded-lg">
+                    {profile}
+                  </div>
+                ))}
               </div>
             </div>
 
-            <h2 className="text-2xl font-semibold mb-6">Sub Teams</h2>
-            
+            <h2 className="text-2xl font-semibold mb-6">Sub Team Leads</h2>
             <div className="space-y-8">
-              {/* Software Team */}
-              <div>
-                <h3 className="text-xl font-semibold mb-4">Software</h3>
-                <div className={`grid ${isMobile ? 'grid-cols-1' : 'md:grid-cols-3'} gap-6`}>
-                  {isMobile ? (
-                    renderProfile(softwareProfiles[currentProfile.software], true)
-                  ) : (
-                    softwareProfiles.map((profile, i) => (
-                      <div key={i} className="bg-gray-50 p-4 rounded-lg">
-                        {profile}
-                      </div>
-                    ))
-                  )}
-                </div>
-              </div>
-
-              {/* Hardware Team */}
-              <div>
-                <h3 className="text-xl font-semibold mb-4">Hardware</h3>
-                <div className={`grid ${isMobile ? 'grid-cols-1' : 'md:grid-cols-3'} gap-6`}>
-                  {isMobile ? (
-                    renderProfile(hardwareProfiles[currentProfile.hardware], true)
-                  ) : (
-                    hardwareProfiles.map((profile, i) => (
-                      <div key={i} className="bg-gray-50 p-4 rounded-lg">
-                        {profile}
-                      </div>
-                    ))
-                  )}
-                </div>
-              </div>
-
-              {/* Airframe Team */}
-              <div>
-                <h3 className="text-xl font-semibold mb-4">Airframe</h3>
-                <div className={`grid ${isMobile ? 'grid-cols-1' : 'md:grid-cols-3'} gap-6`}>
-                  {isMobile ? (
-                    renderProfile(airframeProfiles[currentProfile.airframe], true)
-                  ) : (
-                    airframeProfiles.map((profile, i) => (
-                      <div key={i} className="bg-gray-50 p-4 rounded-lg">
-                        {profile}
-                      </div>
-                    ))
-                  )}
-                </div>
+              <div className="grid md:grid-cols-3 gap-6">
+                {subTeamLeads.map((profile, i) => (
+                  <div key={i} className="bg-gray-50 p-4 rounded-lg">
+                    {profile}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
