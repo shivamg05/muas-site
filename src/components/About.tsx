@@ -27,7 +27,7 @@ const About = () => {
     <div>
       <div className="w-32 h-32 mx-auto overflow-hidden rounded-full mb-4">
         <img 
-          src="/lovable-uploads/9fd1c3a7-d912-45fb-9619-369fc9471c0b.png"
+          src="/lovable-uploads/fda62488-6e3c-4541-bc3f-cb9c708d4a5e.png"
           alt="Michael Suh"
           className="w-full h-full object-cover"
         />
@@ -74,7 +74,7 @@ const About = () => {
     <div>
       <div className="w-32 h-32 mx-auto overflow-hidden rounded-full mb-4">
         <img 
-          src="/lovable-uploads/fda62488-6e3c-4541-bc3f-cb9c708d4a5e.png"
+          src="/lovable-uploads/9fd1c3a7-d912-45fb-9619-369fc9471c0b.png"
           alt="Brian Tran"
           className="w-full h-full object-cover"
         />
