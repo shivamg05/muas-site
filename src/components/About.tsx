@@ -22,7 +22,18 @@ const About = () => {
         />
       </div>
       <p className="text-center text-gray-500">Isaiah Lee</p>
-      <p className="text-center text-gray-400 text-sm">Vice President</p>
+      <p className="text-center text-gray-400 text-sm">Vice President (External Affairs)</p>
+    </div>,
+    <div>
+      <div className="w-32 h-32 mx-auto overflow-hidden rounded-full mb-4">
+        <img 
+          src="/lovable-uploads/9fd1c3a7-d912-45fb-9619-369fc9471c0b.png"
+          alt="Michael Suh"
+          className="w-full h-full object-cover"
+        />
+      </div>
+      <p className="text-center text-gray-500">Michael Suh</p>
+      <p className="text-center text-gray-400 text-sm">Vice President (Internal Affairs)</p>
     </div>,
     <div>
       <div className="w-32 h-32 mx-auto overflow-hidden rounded-full mb-4">
@@ -59,6 +70,17 @@ const About = () => {
       </div>
       <p className="text-center text-gray-500">Michael Chun</p>
       <p className="text-center text-gray-400 text-sm">Software Lead</p>
+    </div>,
+    <div>
+      <div className="w-32 h-32 mx-auto overflow-hidden rounded-full mb-4">
+        <img 
+          src="/lovable-uploads/fda62488-6e3c-4541-bc3f-cb9c708d4a5e.png"
+          alt="Brian Tran"
+          className="w-full h-full object-cover"
+        />
+      </div>
+      <p className="text-center text-gray-500">Brian Tran</p>
+      <p className="text-center text-gray-400 text-sm">Airframe Lead</p>
     </div>,
     <div>
       <div className="w-32 h-32 mx-auto overflow-hidden rounded-full mb-4">
@@ -111,7 +133,7 @@ const About = () => {
 
             <h2 className="text-2xl font-semibold mb-6">Executive Board</h2>
             <div className="space-y-8 mb-12">
-              <div className="grid md:grid-cols-3 gap-6">
+              <div className="grid md:grid-cols-4 gap-6">
                 {execProfiles.map((profile, i) => (
                   <div key={i} className="bg-gray-50 p-4 rounded-lg">
                     {profile}
@@ -122,7 +144,7 @@ const About = () => {
 
             <h2 className="text-2xl font-semibold mb-6">Sub Team Leads</h2>
             <div className="space-y-8">
-              <div className="grid md:grid-cols-3 gap-6">
+              <div className="grid md:grid-cols-4 gap-6">
                 {subTeamLeads.map((profile, i) => (
                   <div key={i} className="bg-gray-50 p-4 rounded-lg">
                     {profile}
