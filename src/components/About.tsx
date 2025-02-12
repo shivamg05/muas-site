@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 
 const About = () => {
@@ -15,14 +14,26 @@ const About = () => {
       <p className="text-center text-gray-400 text-sm">President</p>
     </div>,
     <div>
-      <div className="w-32 h-32 mx-auto bg-gray-200 rounded-full mb-4"></div>
-      <p className="text-center text-gray-500">[Name]</p>
-      <p className="text-center text-gray-400 text-sm">[Role]</p>
+      <div className="w-32 h-32 mx-auto overflow-hidden rounded-full mb-4">
+        <img 
+          src="/lovable-uploads/423fc187-3f6b-4276-baad-f4580c57f0c0.png"
+          alt="Isaiah Lee"
+          className="w-full h-full object-cover"
+        />
+      </div>
+      <p className="text-center text-gray-500">Isaiah Lee</p>
+      <p className="text-center text-gray-400 text-sm">Vice President</p>
     </div>,
     <div>
-      <div className="w-32 h-32 mx-auto bg-gray-200 rounded-full mb-4"></div>
-      <p className="text-center text-gray-500">[Name]</p>
-      <p className="text-center text-gray-400 text-sm">[Role]</p>
+      <div className="w-32 h-32 mx-auto overflow-hidden rounded-full mb-4">
+        <img 
+          src="/lovable-uploads/503edcd5-d3a2-437f-bbc9-cd297fc39c3b.png"
+          alt="Kiran Kothari"
+          className="w-full h-full object-cover"
+        />
+      </div>
+      <p className="text-center text-gray-500">Kiran Kothari</p>
+      <p className="text-center text-gray-400 text-sm">Chief Engineer</p>
     </div>
   ];
 
